@@ -7,7 +7,8 @@ npm init --yes
 ```
 * Add .gitignore file with node_modules ignored
 
-## Dev Dependencies `npm install --save-dev ...`
+## Dev Dependencies 
+`npm install --save-dev ...`
 * webpack@4.17.2
 * webpack-cli@3.1.2 // allows running webpack from command line
 * webpack-dev-server@3.1.7 // allows reading of webpack.config.js
@@ -29,3 +30,16 @@ npm init --yes
 * resolve - specify which types of files to compile `.js`, `.jsx`
 * devServer - set `historyApiFallback` to `true` to use React-Router
 * module - specify how app should be compiled
+
+## Adding Redux to the App
+### Packages `npm install --save`
+* redux@4.0.0
+* 
+
+### Overview files
+* src/server/defaultState.js // default state
+* src/app/store/index.js // redux store
+* src/app/index.js // imports store
+
+
+
