@@ -34,12 +34,19 @@ npm init --yes
 ## Adding Redux to the App
 ### Packages `npm install --save`
 * redux@4.0.0
-* 
+* react@16.4.2
+* react-dom@16.5.0 // turns JSX into HTML
+* react-redux@5.0.7
 
 ### Overview files
 * src/server/defaultState.js // default state
 * src/app/store/index.js // redux store
 * src/app/index.js // imports store
-
-
+ 
+## Adding React to the app
+### Overview files
+* src/app/components/Dashboard.jsx
+* src/app/index.jsx // tells app where to render React app
+* src/app/components/Main.jsx // parent component of Dashboard
+* 
 
