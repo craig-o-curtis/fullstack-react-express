@@ -48,5 +48,14 @@ npm init --yes
 * src/app/components/Dashboard.jsx
 * src/app/index.jsx // tells app where to render React app
 * src/app/components/Main.jsx // parent component of Dashboard
-* 
+
+## Adding Routing and Navigation
+### Packages `npm install --save`
+* react-router-dom@4.3.1
+* history@4.7.2
+
+### Overview files
+* src/app/components/Main.jsx
+* src/app/store/history.js
+* src/app/components/Navigation.jsx
 
