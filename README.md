@@ -59,3 +59,20 @@ npm init --yes
 * src/app/store/history.js
 * src/app/components/Navigation.jsx
 
+## Adding Sagas and Thunks to handle random IDs
+### Packages `npm install --save`
+* redux-logger@3.0.6
+* redux-saga@0.16.2
+* uuid // generates random string
+
+### Overview
+* Sagas run in background of Redux apps
+* Respond to actions by generating side-effects (anything outside of the app)
+* Denoted by generator functions `function*`
+** Generators return any number of values, not just one
+** Generators can return values asynchronously
+
+### Overview files
+* Create saga to generate random task ID
+* src/app/store/mutations.js // template for all changes to app state
+* src/app/store/sagas.mock.js // 
