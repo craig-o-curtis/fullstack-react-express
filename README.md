@@ -1,5 +1,17 @@
 # Fullstack React Redux MongoDB Express App
 
+## Running the App
+1. Terminal 1: // start MongoDB
+* `brew services start mongodb-community` // macOS
+* // `brew services stop mongodb-community` // macOS
+* `npm run initialize`
+
+2. Terminal 2: // start the Express server
+* `npm run server` 
+
+3. Terminal 3: // run the React app
+* `npm run dev`
+
 ## From Scratch
 * Create package.json file
 ```bash
@@ -76,4 +88,32 @@ npm init --yes
 * Create saga to generate random task ID
 * src/app/store/mutations.js // template for all changes to app state
 * src/app/store/sagas.mock.js // 
+
+## Installing MongoDB
+* https://www.mongodb.com/download-center
+
+## Installing Robo 3T
+* https://robomongo.org/download
+
+## Install MongoDB in the project
+`npm install --save-dev mongodb@3.1.10`
+
+### Overview files
+* src/server/initialize-db.js
+* src/server/connect-db.js
+* package.json // initialize script
+
+## Setting up an Express Back-end
+* Create a server and listen for HTTP requests
+
+### Packages `npm install --save-dev`
+* express@4.16.3
+* cors@2.8.4 // express plugin for CORS cross-origin resource security
+* body-parser@1.18.3 // express plugin for POST requests
+
+### Overview files
+* src/server/server.js
+* src/server/server.spec.js
+* package.json // server, server-test scripts
+
 
