@@ -124,5 +124,8 @@ npm init --yes
 * concurrently@4.0.1
 
 ## Sagas to make HTTP requests
+### Packages `npm install --save`
+* axios@0.18.0
 
-
+### Overview files
+* src/app/store/sagas.js

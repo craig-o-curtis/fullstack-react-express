@@ -43,47 +43,47 @@ app.post('/task/new', async (req, res) => {
 });
 
 // Route to update a task
-// export const updateTask = async (task) => {
-//   let { id, group, name, isComplete } = task;
-//   // connect to MongoDB
-//   let db = await connectDB();
-//   let collection = db.collection('tasks');
+export const updateTask = async (task) => {
+  let { id, group, name, isComplete } = task;
+  // connect to MongoDB
+  let db = await connectDB();
+  let collection = db.collection('tasks');
 
-//   // update according to group
-//   if (group) {
-//     // MongoDB method updateOne
-//     // arg1 - find the object with the matching prop id
-//     // arg2 - $set - obj passed as $set prop will be changed in record
-//     await collection.updateOne(
-//       {id}, 
-//       {$set: {group}}
-//     );
-//   }
+  // update according to group
+  if (group) {
+    // MongoDB method updateOne
+    // arg1 - find the object with the matching prop id
+    // arg2 - $set - obj passed as $set prop will be changed in record
+    await collection.updateOne(
+      {id}, 
+      {$set: {group}}
+    );
+  }
 
-//   // update according to name
-//   if (name) {
-//     // MongoDB method updateOne
-//     await collection.updateOne(
-//       {id}, 
-//       {$set: {name}}
-//     );
-//   }
+  // update according to name
+  if (name) {
+    // MongoDB method updateOne
+    await collection.updateOne(
+      {id}, 
+      {$set: {name}}
+    );
+  }
 
-//   // update according to isComplete
-//   if (isComplete !== undefined) {
-//     // MongoDB method updateOne
-//     await collection.updateOne(
-//       {id}, 
-//       {$set: {isComplete}}
-//     );
-//   }
-// }
+  // update according to isComplete
+  if (isComplete !== undefined) {
+    // MongoDB method updateOne
+    await collection.updateOne(
+      {id}, 
+      {$set: {isComplete}}
+    );
+  }
+}
 
 // Route to update a task
-// app.post('/task/update', async (req, res) => {
-//   // task will come in the body
-//   let task = req.body.task;
-//   await updateTask(task);
-//   // tell requester was successful
-//   res.status(200).send();
-// });
+app.post('/task/update', async (req, res) => {
+  // task will come in the body
+  let task = req.body.task;
+  await updateTask(task);
+  // tell requester was successful
+  res.status(200).send();
+});
