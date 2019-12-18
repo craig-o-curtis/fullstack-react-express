@@ -6,10 +6,13 @@
 * // `brew services stop mongodb-community` // macOS
 * `npm run initialize`
 
-2. Terminal 2: // start the Express server
+2. **Terminal 2 // start Express server and React app
+* `npm run start-dev`
+
+2. Terminal 2.a: // start the Express server
 * `npm run server` 
 
-3. Terminal 3: // run the React app
+3. Terminal 2.b: // run the React app
 * `npm run dev`
 
 ## From Scratch
@@ -115,5 +118,11 @@ npm init --yes
 * src/server/server.js
 * src/server/server.spec.js
 * package.json // server, server-test scripts
+
+## Initialize Server and Client
+### Packages `npm install --save-dev`
+* concurrently@4.0.1
+
+## Sagas to make HTTP requests
 
 
