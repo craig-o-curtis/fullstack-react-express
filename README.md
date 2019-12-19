@@ -1,5 +1,7 @@
 # Fullstack React Redux MongoDB Express App
 
+[Heroku app](https://fullstack-react-express-mongo.herokuapp.com/)
+
 ## Running the App
 1. Terminal 1: // start MongoDB
 * `brew services start mongodb-community` // macOS
