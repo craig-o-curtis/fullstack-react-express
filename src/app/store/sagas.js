@@ -7,6 +7,7 @@ import uuid from 'uuid';
 import axios from 'axios';
 
 import * as mutations from './mutations';
+import { history } from './history';
 
 // url for backend - src/server/server.js port
 const url = "http://localhost:7777";
@@ -60,5 +61,34 @@ export function* taskModificationSage() {
         isComplete: task.isComplete
       } 
     });
+  }
+}
+
+export function* userAuthenticationSaga() {
+  while(true) {
+    // listen for dispatched event
+    const { username, password } = yield take(mutations.REQUEST_AUTHENTICATE_USER);
+    try {
+      // try to get data back from server
+      // use yield since is async method
+      const { data } = yield axios.post(`${url}/authenticate`,{username,password});
+      // if POST fails
+      if (!data) {
+        // throw error -> goes to catch block
+        throw new Error();
+      }
+
+      // apply state returned from MongoDB to Redux Store
+      yield put(mutations.setState(data.state));
+      // signal authentication is complete
+      yield put(mutations.processAuthenticateUser(mutations.AUTHENTICATED));
+
+      history.push('/dashboard');
+
+      console.log("Authenticated", data);
+    } catch(err) {
+      console.error('Unable to authenticate', err);
+      yield put(mutations.processAuthenticateUser(mutations.NOT_AUTHENTICATED));
+    }
   }
 }

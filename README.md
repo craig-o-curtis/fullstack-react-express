@@ -129,3 +129,24 @@ npm init --yes
 
 ### Overview files
 * src/app/store/sagas.js
+
+## Authentication
+### Packages `npm install --save`
+* react-router@4.3.1
+* md5 // to store password hashes on DB
+
+### Overview
+1. Creating route guards
+2. Creating login page that communicates with server
+3. Update default state to include auth defaultState
+4. Creating auth route on server
+
+### Overview files
+* src/app/components/Main.jsx
+* src/app/components/Login.jsx
+* src/app/store/defaultState.js // session
+* src/app/store/index.js // session reducer
+* src/server/initialize-db.js // init passwords
+* src/server/server // 
+* src/app/store/mutations.js // requestAuthenticateUser mutation
+* src/server/authenticate.js // username password authentication, token creation

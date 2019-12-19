@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { connectDB } from './connect-db';
+import { authenticationRoute } from './authenticate';
+import './initialize-db';
 
 // define port
 let port = 7777;
@@ -13,10 +15,9 @@ app.listen( port, console.log("Server listening on port ", port) );
 
 // req = request params
 // res = response
-app.get('/', (req, res) => {
-  res.send("Hello world!"); // can print this to an HTML page in <pre> tags
-  // res.send();
-});
+// app.get('/', (req, res) => {
+//   res.send("Hello world!"); // can print this to an HTML page in <pre> tags
+// });
 
 // middleware
 app.use(
@@ -24,6 +25,8 @@ app.use(
   bodyParser.urlencoded({extended:true}), // allows POST requests
   bodyParser.json()
 );
+
+authenticationRoute(app);
 
 // unit-testable function
 export const addNewTask = async (task) => {

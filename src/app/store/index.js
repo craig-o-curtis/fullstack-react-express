@@ -12,9 +12,37 @@ import * as mutations from './mutations';
 // arg2 logger via applyMiddleware
 export const store = createStore(
   combineReducers({
+    // reducer for session
+    session(userSession = defaultState.session || {}, action) {
+      let { type, authenticated, session } = action;
+      switch(type) {
+        // setState called many times, on each property
+        case mutations.SET_STATE:
+          return {
+            ...userSession,
+            id: action.state.session.id
+          };
+        // in process of authenticating
+        case mutations.REQUEST_AUTHENTICATE_USER:
+          return {
+            ...userSession,
+            authenticated: mutations.AUTHENTICATING
+          };
+        case mutations.PROCESSING_AUTHENTICATE_USER:
+          return {
+            ...userSession,
+            authenticated
+          };
+        default:
+          return userSession;
+      }
+    },
     // reducer method for tasks
-    tasks(tasks = defaultState.tasks, action) {
+    tasks(tasks = [], action) {
       switch(action.type) {
+        // setState called many times, on each property
+        case mutations.SET_STATE:
+          return action.state.tasks;
         case mutations.CREATE_TASK:
           return [
               ...tasks, // all previous tasks
@@ -45,15 +73,20 @@ export const store = createStore(
       return tasks;
     },
     // reducer method for comments
-    comments(comments = defaultState.comments) {
-      return comments;
+    comments(comments = []) {
+      return comments; 
     },
     // reducer method for groups
-    groups(groups = defaultState.groups) {
+    groups(groups = [], action) {
+      switch(action.type) {
+        // setState called many times, on each property
+        case mutations.SET_STATE:
+          return action.state.groups;
+      }
       return groups;
     },
     // reducer method for users
-    users(users = defaultState.users) {
+    users(users = []) {
       return users;
     },    
   }),
