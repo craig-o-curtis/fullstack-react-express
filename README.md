@@ -180,3 +180,4 @@ $ brew tap heroku/brew && brew install heroku
 * Heroku site - `Deploy` tab, scroll to `Deploy using Heroku Git`
 * login in terminal with `heroku login`
 * Add git remote command `heroku git:remote -a fullstack-react-express-mongo`
+* Push to Heroku with `git push heroku master`
