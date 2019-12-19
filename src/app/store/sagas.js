@@ -10,7 +10,7 @@ import * as mutations from './mutations';
 import { history } from './history';
 
 // url for backend - src/server/server.js port
-const url = "http://localhost:7777";
+const url = process.env.NODE_ENV == 'production' ? '' : "http://localhost:7777";
 
 /**
  * Reducers cannot have any randomness (the must be deterministic)

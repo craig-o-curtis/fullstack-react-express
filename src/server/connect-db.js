@@ -1,7 +1,6 @@
 import { MongoClient } from 'mongodb';
-
 // local url
-const url = `mongodb://localhost:27017/myorganizer`;
+const url = process.env.MONGODB_URI || `mongodb://localhost:27017/myorganizer`;
 
 // var for db connection
 let db = null;

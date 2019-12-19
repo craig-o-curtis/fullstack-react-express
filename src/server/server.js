@@ -1,12 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import path from 'path';
+
 import { connectDB } from './connect-db';
 import { authenticationRoute } from './authenticate';
 import './initialize-db';
 
 // define port
-let port = 7777;
+// if on Heroku, process.env.PORT will be defined
+let port = process.env.PORT || 7777;
 
 // create new express instance
 let app = express();
@@ -21,12 +24,21 @@ app.listen( port, console.log("Server listening on port ", port) );
 
 // middleware
 app.use(
-  cors(),
+  cors(), 
   bodyParser.urlencoded({extended:true}), // allows POST requests
   bodyParser.json()
 );
 
 authenticationRoute(app);
+
+if (process.env.NODE_ENV == 'production') {
+  // serves as base dir of app
+  app.use(express.static(path.resolve(__dirname, '../../dist')));
+  // do not use webpack dev server in production
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve('index.html'));
+  });
+}
 
 // unit-testable function
 export const addNewTask = async (task) => {

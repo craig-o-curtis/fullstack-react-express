@@ -147,6 +147,36 @@ npm init --yes
 * src/app/store/defaultState.js // session
 * src/app/store/index.js // session reducer
 * src/server/initialize-db.js // init passwords
-* src/server/server // 
+* src/server/server
 * src/app/store/mutations.js // requestAuthenticateUser mutation
-* src/server/authenticate.js // username password authentication, token creation
+* src/server/authenticate.js // username password authentication, token creation 
+
+
+## Deployment to Heroku
+* Configuring Heroku
+* URL deployments
+* Deploying to production
+
+### Install Heroku cli
+* https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+```
+$ brew tap heroku/brew && brew install heroku
+```
+* confirm installed with `heroku -v`
+* create New staging area on Heroku site
+
+### MongoDB Instance provisioning
+* Heroku site - go to `Resources` > `Add-ons` > `MongoDB` > `mLab MongoDB`
+* `Choose Sandbox - Free` - click `Provision`
+
+### Overview files
+* package.json // build script to compile to ES5, npm start script for Heroku to start application
+* src/server/server.js // serve from dist when on Heroku
+* src/server/connect-db.js // use MongoDB URI on Heroku
+* src/app/store/sagas.js // have sagas refer to dynamic URL
+* src/server/initialize-db.js // initialize db in production enviroment
+
+### Deploying to Heroku
+* Heroku site - `Deploy` tab, scroll to `Deploy using Heroku Git`
+* login in terminal with `heroku login`
+* Add git remote command `heroku git:remote -a fullstack-react-express-mongo`
