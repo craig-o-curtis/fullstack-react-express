@@ -7,22 +7,24 @@ import * as mutations from '../store/mutations';
 // authenticateUser defined in mapDispatchToProps
 const Login = ({authenticateUser, authenticated}) => {
   return (
-    <div className="card p-3 col-6">
+    <div className="card p-3 col-xs-12 col-md-6 offset-md-3">
       <h4>Please Login</h4>
       <form onSubmit={authenticateUser}>
-        <label>
+        <div className="form-group">
+        <label htmlFor="username">
           Username:
-          <input type="text" placeholder="username" name="username" defaultValue="Dev" className="form-control mt-2"/>
         </label>
+        <input id="username" type="text" placeholder="username" name="username" defaultValue="Dev" className="form-control mt-2"/>
+        
         <br />
-
-        <label>
+        <label htmlFor="password">
           Password:
+          </label>
           <input type="password" placeholder="password" name="password" defaultValue="" className="form-control mt-2" />
-        </label>
-        <br />
+          </div>
+        
         {authenticated === mutations.NOT_AUTHENTICATED 
-          ? <p>Login incorrect</p>
+          ? <div class="alert alert-danger" role="alert">Login incorrect</div>
           : null}
         <button type="submit" disabled={authenticated === `PROCESSING`} className="form-control mt-2 btn btn-primary">
           Login

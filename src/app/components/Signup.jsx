@@ -4,30 +4,34 @@ import { connect } from "react-redux";
 
 const SignupComponent = ({ requestCreateUserAccount, authenticated }) => {
   return (
-    <div className="card p-3 col-6">
-      <h2>Complete the following form to create a new account.</h2>
+    <div className="card p-3 col-xs-12 col-md-6 offset-md-3">
+      <h4>Complete the following form to create a new account.</h4>
 
       <form onSubmit={requestCreateUserAccount}>
-        <label>
-          <span>User Name</span>
+        <div className="form-group">
+          <label htmlFor="username" l>
+            User Name
+          </label>
           <input
+            id="username"
             type="text"
             placeholder="username"
             name="username"
             defaultValue="Morty"
             className="form-control"
           />
-        </label>
-        <label>
-          <span>Password</span>
+
+<br />
+          <label htmlFor="password">Password</label>
           <input
+            id="password"
             type="text"
             placeholder="password"
             name="password"
             defaultValue="COURAGE"
             className="form-control mt-2"
           />
-        </label>
+        </div>
 
         {authenticated == mutations.USERNAME_RESERVED ? (
           <p>A user by that name already exists.</p>

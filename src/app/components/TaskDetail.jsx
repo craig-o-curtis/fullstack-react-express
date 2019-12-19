@@ -30,9 +30,9 @@ const TaskDetail = ({
   setTaskName
 }) => {
   return (
-    <div className="card p-3 col-6">
+    <div className="card p-3 col-xs-12 col-md-6 offset-md-3">
       {isOwner ? (
-        <div>
+        <div className="form-group">
           <input
             type="text"
             value={task.name}
@@ -49,8 +49,8 @@ const TaskDetail = ({
       <div className="mt-3">
         {isOwner ? (
           <div>
-            <div>
-              You are the owner of this task.
+            <div className="form-group">
+              <span>You are the owner of this task.</span>
               <button
                 className="btn btn-primary ml-2"
                 onClick={() => setTaskCompletion(id, !isComplete)}
@@ -66,44 +66,48 @@ const TaskDetail = ({
           </div>
         )}
       </div>
-      <div className="mt-2">
-        {comments.map(comment => (
-          <div key={comment.id}>
-            <ConnectedUsernameDisplay id={comment.owner} /> : {comment.content}
-          </div>
-        ))}
-      </div>
 
-      <form className="form-inline">
-        <span className="mr-4">Change Group</span>
-        <select onChange={setTaskGroup} className="form-control">
+      {/* Change Group Selector */}
+      <form className="mt-3">
+        <div className="input-group">
+        <label htmlFor="group-selector" className="mr-4">Change Group</label>
+        <select id="group-selector" onChange={setTaskGroup} className="form-control custom-select">
           {groups.map(group => (
             <option key={group.id} value={group.id}>
               {group.name}
             </option>
           ))}
         </select>
+        </div>
       </form>
 
-      <form
-        className="form-inline"
-        onSubmit={e => addTaskComment(id, sessionID, e)}
-      >
-        <input
-          type="text"
-          name="commentContents"
-          autoComplete="off"
-          placeholder="Add a comment"
-          className="form-control"
-        />
-        <button type="submit" className="btn">
-          Submit
-        </button>
+      {/* Comments */}
+      <div className="mt-2 alert alert-dark">
+        {comments.map(comment => (
+          <div key={comment.id}>
+            <ConnectedUsernameDisplay id={comment.owner} /> : {comment.content}
+          </div>
+        ))}
+      </div>
+      {/* Add Comment */}
+      <form className="" onSubmit={e => addTaskComment(id, sessionID, e)}>
+        <div className="form-group input-group">
+          <input
+            type="text"
+            name="commentContents"
+            autoComplete="off"
+            placeholder="Add a comment"
+            className="form-control"
+          />
+          <button type="submit" className="btn btn-outline-dark">
+            Submit
+          </button>
+        </div>
       </form>
 
       <div>
         <Link to="/dashboard">
-          <button className="btn btn-primary mt-2">Done</button>
+          <button className="btn btn-primary mt-2 form-control">Done</button>
         </Link>
       </div>
     </div>
