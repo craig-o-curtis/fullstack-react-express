@@ -4,7 +4,7 @@ import { requestTaskCreation } from '../store/mutations';
 import { ConnectedTaskListItem } from './TaskListItem';
 
 export const TaskList = ({tasks,name,createNewTask,id})=>(
-  <div className="card p-2 m-2">
+  <div className="card p-2 col col-12 col-md-4">
       <h2>
           {name}
       </h2>

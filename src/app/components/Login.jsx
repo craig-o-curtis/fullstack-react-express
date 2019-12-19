@@ -24,7 +24,7 @@ const Login = ({authenticateUser, authenticated}) => {
           </div>
         
         {authenticated === mutations.NOT_AUTHENTICATED 
-          ? <div class="alert alert-danger" role="alert">Login incorrect</div>
+          ? <div className="alert alert-danger" role="alert">Login incorrect</div>
           : null}
         <button type="submit" disabled={authenticated === `PROCESSING`} className="form-control mt-2 btn btn-primary">
           Login

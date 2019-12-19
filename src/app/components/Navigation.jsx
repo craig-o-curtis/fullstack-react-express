@@ -12,7 +12,7 @@ const Navigation = ({ id, authenticated }) => (
     </Link>
 
     {authenticated ? (
-      <div class="alert alert-success" role="alert">
+      <div className="alert alert-success" role="alert">
         Welcome, <ConnectedUsernameDisplay id={id} />!
       </div>
     ) : null}
