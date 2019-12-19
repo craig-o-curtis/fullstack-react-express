@@ -1,14 +1,27 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import React from "react";
 
-const Navigation = () => (
-  <div>
+import { ConnectedUsernameDisplay } from "./UsernameDisplay";
+import * as mutations from "../store/mutations";
+
+const Navigation = ({ id, authenticated }) => (
+  <div className="header">
     <Link to="/dashboard">
-      <h1>Dashboard</h1>
+      <h1>Fullstack React Express MongoDB Heroku</h1>
     </Link>
+
+    {authenticated ? (
+      <h4>
+        Welcome, <ConnectedUsernameDisplay id={id} />!
+      </h4>
+    ) : null}
   </div>
 );
 
-// pass state directly for now
-export const ConnectedNavigation = connect(state => state)(Navigation);
+const mapStateToProps = ({ session }) => ({
+  id: session.id,
+  authenticated: session.authenticated == mutations.AUTHENTICATED
+});
+
+export const ConnectedNavigation = connect(mapStateToProps)(Navigation);

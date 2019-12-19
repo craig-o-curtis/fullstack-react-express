@@ -1,11 +1,14 @@
+import { MongoClient } from 'mongodb';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import path from 'path';
 
 import { connectDB } from './connect-db';
+import { addNewTask, updateTask } from './communicate-db';
 import { authenticationRoute } from './authenticate';
 import './initialize-db';
+
 
 // define port
 // if on Heroku, process.env.PORT will be defined
@@ -40,14 +43,6 @@ if (process.env.NODE_ENV == 'production') {
   });
 }
 
-// unit-testable function
-export const addNewTask = async (task) => {
-  let db = await connectDB();
-  let collection = db.collection('tasks');
-  // MongoDB method insertOne
-  await collection.insertOne(task);
-}
-
 // Route to add a task
 app.post('/task/new', async (req, res) => {
   // task will come in the body
@@ -58,47 +53,18 @@ app.post('/task/new', async (req, res) => {
 });
 
 // Route to update a task
-export const updateTask = async (task) => {
-  let { id, group, name, isComplete } = task;
-  // connect to MongoDB
-  let db = await connectDB();
-  let collection = db.collection('tasks');
-
-  // update according to group
-  if (group) {
-    // MongoDB method updateOne
-    // arg1 - find the object with the matching prop id
-    // arg2 - $set - obj passed as $set prop will be changed in record
-    await collection.updateOne(
-      {id}, 
-      {$set: {group}}
-    );
-  }
-
-  // update according to name
-  if (name) {
-    // MongoDB method updateOne
-    await collection.updateOne(
-      {id}, 
-      {$set: {name}}
-    );
-  }
-
-  // update according to isComplete
-  if (isComplete !== undefined) {
-    // MongoDB method updateOne
-    await collection.updateOne(
-      {id}, 
-      {$set: {isComplete}}
-    );
-  }
-}
-
-// Route to update a task
 app.post('/task/update', async (req, res) => {
   // task will come in the body
   let task = req.body.task;
   await updateTask(task);
   // tell requester was successful
+  res.status(200).send();
+});
+
+app.post('/comment/new',async (req,res)=>{
+  let comment = req.body.comment;
+  let db = await connectDB();
+  let collection = db.collection(`comments`);
+  await collection.insertOne(comment);
   res.status(200).send();
 });

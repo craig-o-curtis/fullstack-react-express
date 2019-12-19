@@ -1,5 +1,5 @@
 import { MongoClient } from 'mongodb';
-// local url
+// local url from MongoDB
 const url = process.env.MONGODB_URI || `mongodb://localhost:27017/myorganizer`;
 
 // var for db connection
@@ -18,5 +18,3 @@ export async function connectDB() {
   console.info("Got DB, ", db);
   return db;
 }
-
-// connectDB();
