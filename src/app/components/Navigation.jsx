@@ -8,7 +8,7 @@ import * as mutations from "../store/mutations";
 const Navigation = ({ id, authenticated }) => (
   <div className="header">
     <Link to="/dashboard">
-      <h1>Fullstack React Express MongoDB Heroku</h1>
+      <h1>My Todo's</h1>
     </Link>
 
     {authenticated ? (
